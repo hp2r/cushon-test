@@ -1,0 +1,28 @@
+{
+  "name": "Stacia Sutton",
+  "balance": 8000,
+  "products": [
+    {
+      "id": 1,
+      "name": "Cushon Equities Fund",
+      "unitsHeld": 12
+    }
+  ],
+  "history": [
+    {
+      "date": "2024-11-06T12:31:17.801Z",
+      "productName": "Cushon Equities Fund",
+      "transactionAmount": 10000
+    },
+    {
+      "productName": "Cushon Equities Fund",
+      "transactionAmount": -1000,
+      "date": "2024-11-06T12:35:26.204Z"
+    },
+    {
+      "productName": "Cushon Equities Fund",
+      "transactionAmount": 3000,
+      "date": "2024-11-06T12:35:36.574Z"
+    }
+  ]
+}
