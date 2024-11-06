@@ -1,10 +1,10 @@
-import { History } from "./history";
+import { TransactionHistory } from "./history";
 
 export interface User {
     name: string;
     balance: number;
     products: UserProduct[];
-    history: History[];
+    history: TransactionHistory[];
 }
 
 export type UserProduct = {
@@ -12,10 +12,4 @@ export type UserProduct = {
     name: string;
     unitsHeld: number;
 };
-/*
-export interface TableDataProps extends User {
-    editButton: React.ReactNode;
-    deleteButton: React.ReactNode;
-}
-*/
   
