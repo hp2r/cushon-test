@@ -1,4 +1,4 @@
-export type History = {
+export type TransactionHistory = {
     date: string;
     productName: string;
     transactionAmount: number;

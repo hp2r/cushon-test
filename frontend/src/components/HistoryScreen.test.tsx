@@ -2,10 +2,10 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { describe, it, expect } from 'vitest';
 import HistoryScreen from './HistoryScreen';
-import { History } from '../types/history';
+import { TransactionHistory } from '../types/history';
 
 describe('HistoryScreen', () => {
-  const mockHistory: History[] = [
+  const mockHistory: TransactionHistory[] = [
     {
       productName: 'Product 1',
       transactionAmount: 100,

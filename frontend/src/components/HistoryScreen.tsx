@@ -1,13 +1,15 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import { History } from '../types/history';
+import { TransactionHistory } from '../types/history';
 
 interface HistoryScreenProps {
-  history: History[];
+  history: TransactionHistory[];
 }
 
 const HistoryScreen: React.FC<HistoryScreenProps> = ({ history }) => {
   return (
+    <>
+    <h2>Transaction History</h2>
     <TableContainer component={Paper}>
       <Table>
         <TableHead>
@@ -28,6 +30,7 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ history }) => {
         </TableBody>
       </Table>
     </TableContainer>
+    </>
   );
 };
 
