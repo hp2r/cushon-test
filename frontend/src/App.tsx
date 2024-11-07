@@ -41,7 +41,7 @@ function App() {
             user ?
               <>
               <UserHeader user={user}/>
-              <ProductTable products={products} handleProductClick={handleProductClick} />
+              <ProductTable user={user} products={products} handleProductClick={handleProductClick} />
               <TransactionModal user={user} selectedProducts={selectedProducts} units={units} setUnits={setUnits} modalOpen={modalOpen} closeTransactionModal={closeTransactionModal} updateUser={updateUser} runningTotal={runningTotal} setRunningTotal={setRunningTotal}/>  
               </>
               : <div>User loading...</div>

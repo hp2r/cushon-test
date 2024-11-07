@@ -1,12 +1,14 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { Product } from "../types/product";
+import { User, UserProduct } from "../types/user";
 
 interface ProductTableProps {
+    user: User;
     products: Product[];
     handleProductClick: (product: Product) => void;
 }
   
-const ProductTable = ({ products, handleProductClick }: ProductTableProps) => {
+const ProductTable = ({ user, products, handleProductClick }: ProductTableProps) => {
 
     return (
         <>
@@ -18,6 +20,7 @@ const ProductTable = ({ products, handleProductClick }: ProductTableProps) => {
                     <TableCell>Product ID</TableCell>
                     <TableCell>Product Name</TableCell>
                     <TableCell>Unit Price</TableCell>
+                    <TableCell>Units Held</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -30,6 +33,7 @@ const ProductTable = ({ products, handleProductClick }: ProductTableProps) => {
                       <TableCell>{product.id}</TableCell>
                       <TableCell>{product.name}</TableCell>
                       <TableCell>{product.unitPrice}</TableCell>
+                      <TableCell>{user.products.find((p:UserProduct) => p.id === product.id)?.unitsHeld || 0}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
