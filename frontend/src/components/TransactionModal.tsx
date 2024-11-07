@@ -1,5 +1,4 @@
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
 import { User, UserProduct } from "../types/user";
 import { TransactionHistory } from "../types/history";
 import { Product } from "../types/product";
@@ -18,9 +17,6 @@ interface TransactionModalProps {
 }
   
 const TransactionModal = ({ user, selectedProducts, units, setUnits, modalOpen, closeTransactionModal, updateUser, runningTotal, setRunningTotal }: TransactionModalProps) => {
-
-    //const { updateUser } = useUser();
-    //const [runningTotal, setRunningTotal] = useState(0);
 
     const handleTransaction = () => {
         if (user && selectedProducts.length > 0) {

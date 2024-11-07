@@ -57,7 +57,6 @@ describe('TransactionModal', () => {
 
     expect(setUnits).toHaveBeenCalled();
     expect(setRunningTotal).toHaveBeenCalled();
-    //expect(screen.getByText('Balance after purchase: 800')).toBeInTheDocument();
   });
 
   it('calls updateUser when the Transaction Action Button is clicked', () => {

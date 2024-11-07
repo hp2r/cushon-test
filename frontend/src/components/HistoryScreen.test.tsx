@@ -1,8 +1,18 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import HistoryScreen from './HistoryScreen';
 import { TransactionHistory } from '../types/history';
+
+const mockUseNavigate = vi.fn();
+
+vi.mock("react-router-dom", async () => {
+  const originalModule = await vi.importActual("react-router-dom");
+  return {
+    ...originalModule,
+    useNavigate: () => mockUseNavigate,
+  };
+});
 
 describe('HistoryScreen', () => {
   const mockHistory: TransactionHistory[] = [
@@ -42,5 +52,14 @@ describe('HistoryScreen', () => {
       expect(screen.getByText(entry.transactionAmount.toString())).toBeInTheDocument();
       expect(screen.getByText(new Date(entry.date).toLocaleString())).toBeInTheDocument();
     });
+  });
+
+  it('navigates back when the Back button is clicked', () => {
+    render(<HistoryScreen history={mockHistory} />);
+
+    const backButton = screen.getByTestId('back-btn');
+    fireEvent.click(backButton);
+
+    expect(mockUseNavigate).toHaveBeenCalledWith(-1);
   });
 });
