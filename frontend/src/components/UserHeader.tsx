@@ -1,21 +1,27 @@
 import { Button } from "@mui/material";
 import { User } from "../types/user";
+import { useNavigate } from "react-router-dom";
 
 interface UserHeaderProps {
     user: User;
-    link: any;
 }
   
-const UserHeader = ({ user, link }: UserHeaderProps) => {
+const UserHeader = ({ user }: UserHeaderProps) => {
+
+    const navigate = useNavigate();
 
     return (
-        <>
-            <div>
-                <div>Welcome, {user.name}</div>
-                <div>Your balance: {user.balance}</div>
+        <div className="header-container" style={{display: 'flex', justifyContent: 'space-between', padding: '1rem 0'}}>
+            <div className="header-text-info" style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start'
+            }}> 
+                <div data-testid={'welcome-text'}>Welcome, <strong>{user.name}</strong></div>
+                <div data-testid={'balance-text'}>Your balance: <strong>{user.balance}</strong></div>
             </div>
-            <Button data-cy={'view-history-btn'} component={link} to="/history">View History</Button>
-        </>
+            <Button data-testid={'view-history-btn'} data-cy={'view-history-btn'} onClick={() => navigate('/history')} variant="contained">View History</Button>
+        </div>
     );
 };
 

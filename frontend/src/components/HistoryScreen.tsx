@@ -1,14 +1,21 @@
 import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import { TransactionHistory } from '../types/history';
+import { useNavigate } from 'react-router-dom';
 
 interface HistoryScreenProps {
   history: TransactionHistory[];
 }
 
 const HistoryScreen: React.FC<HistoryScreenProps> = ({ history }) => {
+
+  const navigate = useNavigate();
+
   return (
     <>
+    <div style={{display:'flex'}} className='button-container'>
+      <Button data-testid={'back-btn'} onClick={() => navigate(-1)} variant="contained">Back</Button>
+    </div>
     <h2>Transaction History</h2>
     <TableContainer component={Paper}>
       <Table>

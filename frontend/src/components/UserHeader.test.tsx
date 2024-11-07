@@ -1,8 +1,18 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { describe, it, expect, vi } from 'vitest';
 import UserHeader from './UserHeader';
 import { User } from '../types/user';
+
+const mockUseNavigate = vi.fn();
+
+vi.mock("react-router-dom", async () => {
+  const originalModule = await vi.importActual("react-router-dom");
+  return {
+    ...originalModule,
+    useNavigate: () => mockUseNavigate,
+  };
+});
 
 describe('UserHeader', () => {
   const mockUser: User = {
@@ -12,18 +22,24 @@ describe('UserHeader', () => {
     history: [],
   };
 
+  const renderUserHeader = () => {
+    return render(<UserHeader user={mockUser} />);
+  }
+
   it('renders the user name and balance', () => {
-    render(<UserHeader user={mockUser} link={vi.fn()} />);
+    renderUserHeader();
 
-    expect(screen.getByText(`Welcome, ${mockUser.name}`)).toBeInTheDocument();
-    expect(screen.getByText(`Your balance: ${mockUser.balance}`)).toBeInTheDocument();
+    expect(screen.getByTestId('welcome-text')).toHaveTextContent(`Welcome, ${mockUser.name}`);
+    expect(screen.getByTestId('balance-text')).toHaveTextContent(`Your balance: ${mockUser.balance}`);
   });
 
-  /*
-  it('renders a loading message when user is not provided', () => {
-    render(<UserHeader user={null} />);
+  it('navigates to /history when the "View History" button is clicked', () => {
+    renderUserHeader();
 
-    expect(screen.getByText('User loading...')).toBeInTheDocument();
+    const historyButton = screen.getByTestId('view-history-btn');
+    fireEvent.click(historyButton);
+
+    expect(mockUseNavigate).toHaveBeenCalledWith('/history');
   });
-  */
+
 });
