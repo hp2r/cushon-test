@@ -22,6 +22,7 @@ const TransactionModal = ({ user, selectedProducts, units, setUnits, modalOpen, 
         if (user && selectedProducts.length > 0) {
             let newBalance = user.balance;
             const newHistory: TransactionHistory[] = [];
+
             const newProducts: UserProduct[] = user.products.map((product: UserProduct) => {
                 const selectedProduct = selectedProducts.find(p => p.id === product.id);
                 if (selectedProduct) {
@@ -35,6 +36,23 @@ const TransactionModal = ({ user, selectedProducts, units, setUnits, modalOpen, 
                     return { ...product, unitsHeld: product.unitsHeld + (units[selectedProduct.id] || 0) };
                 }
                 return product;
+            });
+
+            selectedProducts.forEach(selectedProduct => {
+                if (!user.products.find(product => product.id === selectedProduct.id)) {
+                    const transactionAmount = selectedProduct.unitPrice * (units[selectedProduct.id] || 0);
+                    newBalance -= transactionAmount;
+                    newHistory.push({
+                        productName: selectedProduct.name,
+                        transactionAmount,
+                        date: new Date().toISOString()
+                    });
+                    newProducts.push({
+                        id: selectedProduct.id,
+                        name: selectedProduct.name,
+                        unitsHeld: units[selectedProduct.id] || 0
+                    });
+                }
             });
 
             updateUser.mutate({ ...user, products: newProducts, balance: newBalance, history: [...user.history, ...newHistory] } as User);

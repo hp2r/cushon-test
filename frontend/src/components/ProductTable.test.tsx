@@ -3,6 +3,7 @@ import '@testing-library/jest-dom';
 import { describe, it, expect, vi } from 'vitest';
 import ProductTable from './ProductTable';
 import { Product } from '../types/product';
+import { User } from '../types/user';
 
 describe('ProductTable', () => {
   const mockProducts: Product[] = [
@@ -18,10 +19,28 @@ describe('ProductTable', () => {
     },
   ];
 
+  const mockUser: User = {
+    name: 'John Doe',
+    balance: 1000,
+    products: [
+      {
+        id: '1',
+        name: 'Product 1',
+        unitsHeld: 11
+      },
+      {
+        id: '2',
+        name:'Product 2',
+        unitsHeld: 6
+      }
+    ],
+    history: [],
+  };
+
   const handleProductClick = vi.fn();
 
   const renderProductTable = () => {
-    return render(<ProductTable products={mockProducts} handleProductClick={handleProductClick} />);
+    return render(<ProductTable user={mockUser} products={mockProducts} handleProductClick={handleProductClick} />);
   };
 
   it('renders the product table with headers', () => {
@@ -47,6 +66,9 @@ describe('ProductTable', () => {
       expect(screen.getByText(product.id)).toBeInTheDocument();
       expect(screen.getByText(product.name)).toBeInTheDocument();
       expect(screen.getByText(product.unitPrice.toString())).toBeInTheDocument();
+    });
+    mockUser.products.forEach((product) => {
+      expect(screen.getByText(product.unitsHeld.toString())).toBeInTheDocument();
     });
   });
 
