@@ -17,10 +17,10 @@ const UserHeader = ({ user }: UserHeaderProps) => {
                 flexDirection: 'column',
                 alignItems: 'flex-start'
             }}> 
-                <div data-testid={'welcome-text'}>Welcome, <strong>{user.name}</strong></div>
-                <div data-testid={'balance-text'}>Your balance: <strong>{user.balance}</strong></div>
+                <div aria-label="Welcome text" data-testid={'welcome-text'}>Welcome, <strong>{user.name}</strong></div>
+                <div aria-label="Balance text" data-testid={'balance-text'}>Your balance: <strong>{user.balance}</strong></div>
             </div>
-            <Button data-testid={'view-history-btn'} data-cy={'view-history-btn'} onClick={() => navigate('/history')} variant="contained">View History</Button>
+            <Button aria-label="View transaction history" data-testid={'view-history-btn'} data-cy={'view-history-btn'} onClick={() => navigate('/history')} variant="contained">View History</Button>
         </div>
     );
 };

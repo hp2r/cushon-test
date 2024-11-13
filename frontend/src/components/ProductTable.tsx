@@ -14,7 +14,7 @@ const ProductTable = ({ user, products, handleProductClick }: ProductTableProps)
         <>
             {products && products.length > 0 ?
             <TableContainer component={Paper}>
-              <Table>
+              <Table aria-label="product table">
                 <TableHead>
                   <TableRow>
                     <TableCell>Product ID</TableCell>
@@ -29,7 +29,7 @@ const ProductTable = ({ user, products, handleProductClick }: ProductTableProps)
                         cursor: 'pointer',
                         '&:hover': {
                         backgroundColor: '#f5f5f5',
-                    },}} data-cy={`${product.id}-row`} data-testid={`${product.id}-row`} key={product.id} onClick={() => handleProductClick(product)}>
+                    },}} data-cy={`${product.id}-row`} data-testid={`${product.id}-row`} key={product.id} onClick={() => handleProductClick(product)} aria-label={`product ${product.name}`}>
                       <TableCell>{product.id}</TableCell>
                       <TableCell>{product.name}</TableCell>
                       <TableCell>{product.unitPrice}</TableCell>
