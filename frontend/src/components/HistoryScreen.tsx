@@ -14,7 +14,7 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ history }) => {
   return (
     <>
     <div style={{display:'flex'}} className='button-container'>
-      <Button data-testid={'back-btn'} onClick={() => navigate(-1)} variant="contained">Back</Button>
+      <Button aria-label="Go Back" data-testid={'back-btn'} onClick={() => navigate(-1)} variant="contained">Back</Button>
     </div>
     <h2>Transaction History</h2>
     <TableContainer component={Paper}>

@@ -55,6 +55,8 @@ MUI
 
 ## Notes and possible improvements
 
+I will be suggesting possible designs for meeting future scenarios during the interview via this link: https://www.figma.com/design/TpwMztXg4bI7ZuWdiKEs3S/Cushon?node-id=0-1&node-type=canvas&t=194a1EPPmJVx3okA-0
+
 I will discuss the below during the interview. Having said that, I did wish to spend more time on the task but came across issues during testing which were taking up too much time so took mitigating action. For example, I used Cypress to cover test cases where it would have been possible using RTL but had issues with certain mocks. 
 
 • What you have done and why.

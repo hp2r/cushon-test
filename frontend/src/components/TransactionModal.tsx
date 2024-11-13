@@ -71,7 +71,7 @@ const TransactionModal = ({ user, selectedProducts, units, setUnits, modalOpen, 
     };
 
     return (
-        <Modal open={modalOpen} onClose={() => closeTransactionModal()}>
+        <Modal open={modalOpen} onClose={() => closeTransactionModal()} aria-labelledby="transaction-modal-title" aria-describedby="transaction-modal-description">
             <ModalDialog>
                 <ModalClose onClick={() => closeTransactionModal()} data-testid={'transaction-modal-close-btn'} />
                 <div style={{ padding: 20, backgroundColor: 'white', margin: 'auto', marginTop: '10%' }}>
@@ -90,7 +90,7 @@ const TransactionModal = ({ user, selectedProducts, units, setUnits, modalOpen, 
                     </div>
                 ))}
                 <p style={{ color: 'black' }}>Balance after purchase: {user.balance - runningTotal}</p>
-                <Button data-cy={'transaction-action-btn'} data-testid={'transaction-action-btn'} disabled={Object.values(units).every(unit => unit === 0) || runningTotal > user.balance} onClick={handleTransaction} color="primary" variant="contained">Buy</Button>
+                <Button aria-label="Confirm Buy" data-cy={'transaction-action-btn'} data-testid={'transaction-action-btn'} disabled={Object.values(units).every(unit => unit === 0) || runningTotal > user.balance} onClick={handleTransaction} color="primary" variant="contained">Buy</Button>
                 </div>
             </ModalDialog>
         </Modal>
